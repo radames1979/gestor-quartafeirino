@@ -412,6 +412,7 @@ function App() {
   const [db, setDb] = useState(null);
   const [auth, setAuth] = useState(null);
   const [userId, setUserId] = useState(null);
+  const [appId, setAppId] = useState(null);
   const [isAuthReady, setIsAuthReady] = useState(false);
   const isInitialLoad = useRef(true);
   const dataSyncTimer = useRef(null);
