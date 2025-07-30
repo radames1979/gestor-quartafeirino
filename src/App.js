@@ -552,13 +552,33 @@ function App() {
 
 
   // --- Firebase Initialization and Auth Effect ---
-  useEffect(() => {
+ useEffect(() => {
     try {
-      const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
-      if (!firebaseConfig) {
-        showMessage("Configuração do Firebase não encontrada.", "error");
+      let firebaseConfig;
+
+      // Verifica se está no ambiente de desenvolvimento (Canvas) que provê a variável global
+      if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+        firebaseConfig = JSON.parse(__firebase_config);
+        setAppId(typeof __app_id !== 'undefined' ? __app_id : 'default-app-id');
+      } else {
+        // Se não, constrói a configuração a partir das variáveis de ambiente (para o site real)
+        firebaseConfig = {
+          apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+          authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+          projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+          storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+          messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+          appId: process.env.REACT_APP_FIREBASE_APP_ID,
+        };
+        setAppId(firebaseConfig.projectId); // Usa o ID do projeto como App ID no site real
+      }
+
+      // Verifica se a configuração foi carregada com sucesso
+      if (!firebaseConfig || !firebaseConfig.apiKey) {
+        showMessage("Configuração do Firebase não encontrada. Verifique as variáveis de ambiente.", "error");
         return;
       }
+
       const app = initializeApp(firebaseConfig);
       const firestoreDb = getFirestore(app);
       const firebaseAuth = getAuth(app);
@@ -578,14 +598,14 @@ function App() {
               await signInAnonymously(firebaseAuth);
             }
           } catch (error) {
-            console.error("Firebase sign-in error:", error);
+            console.error("Erro de autenticação do Firebase:", error);
             showMessage("Erro de autenticação com o servidor.", "error");
           }
         }
       });
       return () => unsubscribe();
     } catch (error) {
-      console.error("Firebase initialization failed:", error);
+      console.error("Falha na inicialização do Firebase:", error);
       showMessage("Falha ao iniciar a conexão com o servidor.", "error");
     }
   }, []);
