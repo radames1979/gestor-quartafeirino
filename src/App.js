@@ -419,7 +419,7 @@ function App() {
   
   // --- Cloud (jsonbin.io) State ---
   const [cloudBinId] = useState('687978e96be756241aa578a2'); // Example Bin ID
-  const [cloudApiKey] = useState('$2a$10$V0U3rcG2aFugBDUR0S5jL.5MvNMujZ2Iihk3sSBA3bs3OsjzgBelC'); // Example API Key
+  const [cloudApiKey] = useState('$2a$10$YFxwlw1eaE/O7kj.Z9rOcOGwzsz/E9rg40vdnYYw8vJiaV7aCGRkS'); // Example API Key
 
   // --- Application State ---
   const [players, setPlayers] = useState([]);
