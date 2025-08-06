@@ -418,8 +418,8 @@ function App() {
   const dataSyncTimer = useRef(null);
   
   // --- Cloud (jsonbin.io) State ---
-  const [cloudBinId] = useState('6892be637b4b8670d8ae4b6a'); // Example Bin ID
-  const [cloudApiKey] = useState('$2a$10$YFxwlw1eaE/O7kj.Z9rOcOGwzsz/E9rg40vdnYYw8vJiaV7aCGRkS'); // Example API Key
+  const [cloudBinId] = useState('6892c0d0f7e7a370d1f4ea95'); // Example Bin ID
+  const [cloudApiKey] = useState('$2a$10$vUWQfHGQDPt7ePocY9SWtO9o4bmRhWP8FogKJkGfW4v7/AYtk4MbC'); // Example API Key
 
   // --- Application State ---
   const [players, setPlayers] = useState([]);
