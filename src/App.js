@@ -615,7 +615,7 @@ function App() {
   useEffect(() => {
     if (isAuthReady && db && userId) {
       const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-      const docRef = doc(db, `artifacts/${appId}/users/${userId}/data/appData`);
+      const docRef = doc(db, `artifacts/${appId}/public/dadosCompartilhados`);
       
       const unsubscribe = onSnapshot(docRef, (docSnap) => {
         if (docSnap.exists()) {
@@ -659,7 +659,7 @@ function App() {
 
     dataSyncTimer.current = setTimeout(async () => {
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const docRef = doc(db, `artifacts/${appId}/users/${userId}/data/appData`);
+        const docRef = doc(db, `artifacts/${appId}/public/dadosCompartilhados`);
 
         const removeUndefined = (obj) => {
             if (obj === null || typeof obj !== 'object') {
