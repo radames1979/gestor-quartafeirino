@@ -564,12 +564,12 @@ function App() {
       } else {
         // Se não, constrói a configuração a partir das variáveis de ambiente (para o site real)
         firebaseConfig = {
-          apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-          authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-          projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-          storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-          messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-          appId: process.env.REACT_APP_FIREBASE_APP_ID,
+           apiKey: "AIzaSyDAXOKkJkcQWA19Hgfm_CusmZrcJDBTQoI",
+           authDomain: "quartafeirinoc-manager.firebaseapp.com",
+           projectId: "quartafeirinoc-manager",
+           storageBucket: "quartafeirinoc-manager.firebasestorage.app",
+           messagingSenderId: "34864885941",
+           appId: "1:34864885941:web:ff01b9f724e57f41a7cefc"
         };
         setAppId(firebaseConfig.projectId); // Usa o ID do projeto como App ID no site real
       }
